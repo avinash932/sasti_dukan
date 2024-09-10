@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from main import views as main_views
 
 urlpatterns = [
+    path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
     #customer
     path('login/customer',main_views.customer_login_view,name='customer_login'),
@@ -30,9 +31,14 @@ urlpatterns = [
     path('login/seller',main_views.seller_login_view,name='seller_login'),
     path('register/seller',main_views.seller_register_view,name='seller_register'),
     path('forgot/seller',main_views.seller_forgot_pass_view,name='seller_forgot_pass'),
+    path('detail/<int:id>', main_views.detail_view, name='detail'),
+    #logout
+     path('logout', main_views.logout_view, name='logout'),
+     path('cat/<slug:name>', main_views.category_view, name='category'),
     #indexx
     path('',main_views.home_view,name='home'),
-    path('seller/logout',main_views.logout_view,name='logout'),
+    # path('cat/<slug:name>',main_views.Category_view,name='Category'),
+
 
     
 ]
